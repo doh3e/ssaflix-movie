@@ -1,0 +1,40 @@
+.nav-container {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+}
+
+nav {
+  position: sticky;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  color: antiquewhite;
+  padding: 30px;
+  background-color: rgba(10, 10, 10, 0.5);
+}
+
+nav > ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 80px;
+  color: inherit;
+  list-style: none;
+}
+
+nav > ul > li {
+  color: inherit;
+  font-family: inherit;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+nav a {
+  color: inherit;
+  text-decoration: none;
+}
