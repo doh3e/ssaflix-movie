@@ -1,5 +1,5 @@
-// 기존 코드 유지
 let currentIndex = 0;
+let slideInterval;
 const bannerImages = [
   './image/3idiots_banner.png',  // 세얼간이 영화장면
   './image/pasuggun_banner.jpg', // 파수꾼
@@ -30,7 +30,6 @@ const movieEngName = [
   'Depature'
 ]
 
-// 영화 이름과 영어 이름을 표시할 요소 참조
 const movieNameElement = document.getElementById('movieName');
 const movieEngNameElement = document.getElementById('movieEngName');
 const movieInfoElement = document.querySelector('.movie-info'); // 추가
@@ -42,12 +41,16 @@ const prev = document.querySelector('.btnleft');                // 이전 버튼
 const next = document.querySelector('.btnright');               // 다음 버튼
 
 let isAnimating = false; // 애니메이션 상태 플래그
-let slideInterval;
 
 function startSlideInterval() {
+  // 이전 인터벌이 있으면 제거
+  if (slideInterval) {
+    clearInterval(slideInterval);
+  }
+  
   slideInterval = setInterval(() => {
     changeSlide('next');
-  }, 5000);
+  }, 5000); // 7초마다 자동 슬라이드
 }
 
 function stopSlideInterval() {
@@ -55,6 +58,9 @@ function stopSlideInterval() {
 }
 
 function updateBannerImage(index, direction) {
+  if (isAnimating) return; // 이미 애니메이션 중이면 종료
+  isAnimating = true; // 애니메이션 상태 시작
+  
   const newImage = document.createElement('img');
   newImage.src = bannerImages[index];
   newImage.classList.add('main-slide-banner');
@@ -74,13 +80,15 @@ function updateBannerImage(index, direction) {
       bannerImage = newImage; // 새로운 이미지를 현재 이미지로 업데이트
 
       // 영화 이름과 영어 제목 업데이트
-      movieNameElement.textContent = movieName[index];
-      movieEngNameElement.textContent = movieEngName[index];
+      movieNameElement.textContent = movieName[currentIndex];
+      movieEngNameElement.textContent = movieEngName[currentIndex];
 
       // 페이드인 애니메이션을 위해 클래스 추가
       setTimeout(() => {
         movieInfoElement.classList.add('show');
       }, 100); // 약간의 지연 후 페이드인 시작
+
+      isAnimating = false; // 애니메이션 상태 종료
     }, { once: true });
   }, 20);
 }
@@ -88,7 +96,6 @@ function updateBannerImage(index, direction) {
 // 포스터 슬라이드 제어 함수
 function moveSlide(direction) {
   if (isAnimating) return;
-  isAnimating = true;
 
   const slides = document.querySelectorAll('.slide');
   if (direction === 'next') {
@@ -96,10 +103,6 @@ function moveSlide(direction) {
   } else if (direction === 'prev') {
     container.prepend(slides[slides.length - 1]); // 마지막 슬라이드를 첫 번째로 이동
   }
-
-  setTimeout(() => {
-    isAnimating = false; // 애니메이션 종료
-  }, 1000); // transition 시간이 1초로 설정됨
 }
 
 // 슬라이드를 동시에 변경하는 함수
