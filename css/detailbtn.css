@@ -1,12 +1,20 @@
+@font-face {
+  font-family: 'SUIT-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   box-sizing: border-box;
 }
 
 .detail-btn {
-  position: absolute; /* 부모 요소(main-photo) 기준으로 절대 위치 */
-  bottom: 60px; /* 하단에서 20px 떨어진 위치 */
-  right: 8%; /* 우측에서 50px 떨어진 위치 */
-  z-index: 10; /* 슬라이드 위로 올리기 위해 z-index 설정 */
+  position: absolute;
+  bottom: 60px;
+  width: 10%;
+  left: 83%;
+  z-index: 99; /* 슬라이드 위로 올리기 위해 z-index 설정 */
   display: block;
   height: 100px;
   animation: hue-rotate 5s linear infinite;
@@ -18,7 +26,7 @@
   border: none;
   color: #111;
   display: inline-block;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'SUIT-Regular', sans-serif;
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
@@ -31,7 +39,7 @@
 }
 
 .button:hover {
-  background-color: #da3d3d;
+  background-color: #bb1010;
   color: #fff;
 }
 
@@ -44,6 +52,9 @@
   z-index: 2;
   color: white;
   background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .button--bubble:hover {
@@ -51,11 +62,11 @@
 }
 
 .button--bubble:hover + .button--bubble__effect-container .circle {
-  background: #da3d3d;
+  background: #bb1010;
 }
 
 .button--bubble:hover + .button--bubble__effect-container .button {
-  background: #da3d3d;
+  background: #bb1010;
 }
 
 .button--bubble:active + .button--bubble__effect-container {
@@ -136,10 +147,10 @@
     filter: hue-rotate(0deg);
   }
   to {
-    -webkit-filter: hue-rotate(30deg); /* 파란색, 녹색 계열 색상 변화 */
-    -moz-filter: hue-rotate(30deg);
-    -ms-filter: hue-rotate(30deg);
-    filter: hue-rotate(30deg);
+    -webkit-filter: hue-rotate(-60deg); /* 파란색, 녹색 계열 색상 변화 */
+    -moz-filter: hue-rotate(-60deg);
+    -ms-filter: hue-rotate(-60deg);
+    filter: hue-rotate(-60deg);
   }
 }
 

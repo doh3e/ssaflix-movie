@@ -1,7 +1,7 @@
 // 기존 코드 유지
 let currentIndex = 0;
 const bannerImages = [
-  './image/3idiots_resize.png',  // 세얼간이 영화장면
+  './image/3idiots_banner.png',  // 세얼간이 영화장면
   './image/pasuggun_banner.jpg', // 파수꾼
   './image/everything_banner.jpg',   // 3번째
   './image/mogadishu_banner.png',   // 4번째
@@ -9,6 +9,31 @@ const bannerImages = [
   './image/urideul_banner.jpg',   // 6번째 추가
   './image/goodandbye_banner.jpg'    // 7번째 추가
 ];
+
+const movieName = [
+  '세 얼간이',
+  '파수꾼',
+  '에브리씽 에브리웨어 올 앳 원스',
+  '모가디슈',
+  'RRR',
+  '우리들',
+  '굿 앤 바이'
+]
+
+const movieEngName = [
+  '3 Idiots',
+  'Break Night',
+  'Everything Everywhere All at Once',
+  'Escape from Mogadishu',
+  'Rise Roar Revolt',
+  'The World of Us',
+  'Depature'
+]
+
+// 영화 이름과 영어 이름을 표시할 요소 참조
+const movieNameElement = document.getElementById('movieName');
+const movieEngNameElement = document.getElementById('movieEngName');
+const movieInfoElement = document.querySelector('.movie-info'); // 추가
 
 const bannerImageContainer = document.querySelector('.main-photo');
 let bannerImage = document.querySelector('.main-slide-banner'); // 현재 배너 이미지
@@ -22,7 +47,7 @@ let slideInterval;
 function startSlideInterval() {
   slideInterval = setInterval(() => {
     changeSlide('next');
-  }, 7000); // 7초마다 자동 슬라이드
+  }, 5000);
 }
 
 function stopSlideInterval() {
@@ -35,6 +60,9 @@ function updateBannerImage(index, direction) {
   newImage.classList.add('main-slide-banner');
   newImage.style.left = direction === 'next' ? '100%' : '-100%'; // 이미지 초기 위치 설정
 
+  // 영화 제목 페이드아웃
+  movieInfoElement.classList.remove('show');
+
   bannerImageContainer.appendChild(newImage);
 
   setTimeout(() => {
@@ -44,6 +72,15 @@ function updateBannerImage(index, direction) {
     newImage.addEventListener('transitionend', () => {
       bannerImageContainer.removeChild(bannerImage);
       bannerImage = newImage; // 새로운 이미지를 현재 이미지로 업데이트
+
+      // 영화 이름과 영어 제목 업데이트
+      movieNameElement.textContent = movieName[index];
+      movieEngNameElement.textContent = movieEngName[index];
+
+      // 페이드인 애니메이션을 위해 클래스 추가
+      setTimeout(() => {
+        movieInfoElement.classList.add('show');
+      }, 100); // 약간의 지연 후 페이드인 시작
     }, { once: true });
   }, 20);
 }
@@ -79,28 +116,65 @@ function changeSlide(direction) {
   moveSlide(direction);
 }
 
-// 스와이프 기능 추가
+// 터치 및 마우스 스와이프 기능 추가
 function handleSwipe() {
-  let touchstartX = 0;
-  let touchendX = 0;
+  let startX = 0;
+  let currentX = 0;
+  let isDragging = false;
 
+  // 터치 이벤트
   container.addEventListener('touchstart', function(event) {
-    touchstartX = event.changedTouches[0].screenX;
+      startX = event.touches[0].clientX;
   });
 
-  container.addEventListener('touchend', function(event) {
-    touchendX = event.changedTouches[0].screenX;
-    handleGesture();
+  container.addEventListener('touchmove', function(event) {
+      currentX = event.touches[0].clientX;
+  });
+
+  container.addEventListener('touchend', function() {
+      handleGesture();
+  });
+
+  // 마우스 이벤트
+  container.addEventListener('mousedown', function(event) {
+      isDragging = true;
+      startX = event.clientX;
+  });
+
+  container.addEventListener('mousemove', function(event) {
+      if (isDragging) {
+          currentX = event.clientX;
+      }
+  });
+
+  container.addEventListener('mouseup', function() {
+      if (isDragging) {
+          handleGesture();
+          isDragging = false;
+      }
+  });
+
+  container.addEventListener('mouseleave', function() {
+      if (isDragging) {
+          handleGesture();
+          isDragging = false;
+      }
   });
 
   function handleGesture() {
-    if (touchendX < touchstartX) {
-      changeSlide('next');
-    } else if (touchendX > touchstartX) {
-      changeSlide('prev');
-    }
+      const swipeThreshold = 50; // 스와이프를 감지할 임계값
+      if (Math.abs(currentX - startX) > swipeThreshold) {
+          if (currentX < startX) {
+              changeSlide('next');
+          } else if (currentX > startX) {
+              changeSlide('prev');
+          }
+      }
   }
 }
+
+// 함수 호출
+handleSwipe();
 
 // 다음 버튼 클릭 시
 next.addEventListener('click', () => {
@@ -118,7 +192,7 @@ prev.addEventListener('click', () => {
 
 // 슬라이드 컨테이너 클릭 시
 container.addEventListener('click', (event) => {
-  if (window.innerWidth <= 768) {
+  if (window.innerWidth <= 900) {
     const containerRect = container.getBoundingClientRect();
     if (event.clientX < containerRect.width / 2) {
       changeSlide('prev');
@@ -138,6 +212,3 @@ elementsToHover.forEach(element => {
 // 페이지 로드 시 처음 배너 이미지를 설정하고 자동 슬라이드 시작
 updateBannerImage(currentIndex, 'next');
 startSlideInterval();
-
-// 스와이프 기능 활성화
-handleSwipe();

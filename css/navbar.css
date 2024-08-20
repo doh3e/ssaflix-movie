@@ -27,13 +27,19 @@ body {
   z-index: 99;
 }
 
-nav {
+#navbar {
   width: 90%;
   height: 100%;
+  min-width: 850px;
+  color: antiquewhite;
+  position: fixed;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: antiquewhite;
+  padding: 30px;
+  background-color: transparent;
+  transition: all 300ms ease-in-out;
 }
 
 .nav-logo{
@@ -42,24 +48,36 @@ nav {
   justify-content: flex-start;
 }
 
-nav > ul {
-  width: 90%;
+.navbar__menu {
+  width: 50%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 70px;
+  gap: 0;
   color: inherit;
   list-style: none;
 }
 
-nav > ul > li {
-  color: inherit;
+.navbar__menu__item {
+  flex: 1;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.07em;
+  padding: 0;
+  margin: 0;
+  color: #f1f1f1;
+  cursor: pointer;
+  list-style: none;
   font-family: inherit;
   font-size: 24px;
-  font-weight: bold;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-nav a {
-  color: inherit;
-  text-decoration: none;
+.navbar__menu__item:hover,
+.navbar__menu__item.active {
+  background-color: rgba(161, 161, 161, 0.8);
 }

@@ -9,14 +9,14 @@
 </head>
 <body>
 <div class="nav-container">  
-  <nav style="color: white;">
+  <nav id="navbar" style="color: white;">
     <div class="nav-logo">
-      <img src="./image/SSAFLIX_logo.png" alt="logo" style="width:140px; height:70px;">
+      <a href="main.html"><img src="./image/SSAFLIX_logo.png" alt="logo" style="width:140px; height:70px;"></a>
     </div>
-    <ul>
-        <li><a href="main.html">MAIN</a></li>
-        <li><a href="movies.html">MOVIES</a></li>
-        <li><a href="contact.html">CONTACT</a></li>
+    <ul class="navbar__menu">
+        <li class="navbar__menu__item" onclick="window.location.href='main.html'">MAIN</li>
+        <li class="navbar__menu__item" onclick="window.location.href='movies.html'">MOVIES</li>
+        <li class="navbar__menu__item" onclick="window.location.href='contact.html'">CONTACT</a></li>
     </ul>
   </nav>
 </div>
