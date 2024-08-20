@@ -1,0 +1,145 @@
+* {
+  box-sizing: border-box;
+}
+
+.detail-btn {
+  position: absolute; /* 부모 요소(main-photo) 기준으로 절대 위치 */
+  bottom: 60px; /* 하단에서 20px 떨어진 위치 */
+  right: 8%; /* 우측에서 50px 떨어진 위치 */
+  z-index: 10; /* 슬라이드 위로 올리기 위해 z-index 설정 */
+  display: block;
+  height: 100px;
+  animation: hue-rotate 5s linear infinite;
+}
+
+.button {
+  -webkit-font-smoothing: antialiased;
+  background-color: #F1f1f1;
+  border: none;
+  color: #111;
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  user-select: none;
+  letter-spacing: 1px;
+  color: #111;
+  padding: 20px 40px;
+  text-transform: uppercase;
+  transition: all 0.1s ease-out;
+}
+
+.button:hover {
+  background-color: #da3d3d;
+  color: #fff;
+}
+
+.button:active {
+  transform: scale(0.95);
+}
+
+.button--bubble {
+  position: relative;
+  z-index: 2;
+  color: white;
+  background: none;
+}
+
+.button--bubble:hover {
+  background: none;
+}
+
+.button--bubble:hover + .button--bubble__effect-container .circle {
+  background: #da3d3d;
+}
+
+.button--bubble:hover + .button--bubble__effect-container .button {
+  background: #da3d3d;
+}
+
+.button--bubble:active + .button--bubble__effect-container {
+  transform: scale(0.95);
+}
+
+.button--bubble__container {
+  position: relative;
+  z-index: 10; /* 슬라이드보다 위로 올라오도록 설정 */
+  bottom: 20px; /* 배너의 하단에 위치하도록 설정 */
+  left: 50%;
+  transform: translateX(-50%); /* 버튼이 중앙에 위치하도록 설정 */
+  margin-top: 0; /* 필요 시 마진을 제거 */
+}
+
+
+.button--bubble__container .effect-button {
+  position: absolute;
+  width: 50%;
+  height: 25%;
+  top: 50%;
+  left: 25%;
+  z-index: 1;
+  transform: translateY(-50%);
+  background: #222;
+  transition: background 0.1s ease-out;
+}
+
+.button--bubble__effect-container {
+  position: absolute;
+  display: block;
+  width: 200%;
+  height: 400%;
+  top: -150%;
+  left: -50%;
+  -webkit-filter: url("#goo");
+  filter: url("#goo");
+  transition: all 0.1s ease-out;
+  pointer-events: none;
+}
+
+.button--bubble__effect-container .circle {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 15px;
+  background: #222;
+  transition: background 0.1s ease-out;
+}
+
+.button--bubble__effect-container .circle.top-left {
+  top: 40%;
+  left: 27%;
+}
+
+.button--bubble__effect-container .circle.bottom-right {
+  bottom: 40%;
+  right: 27%;
+}
+
+.goo {
+  position: absolute;
+  visibility: hidden;
+  width: 1px;
+  height: 1px;
+}
+
+.button--bubble__container {
+  top: 50%;
+  margin-top: -25px;
+}
+
+@keyframes hue-rotate {
+  from {
+    -webkit-filter: hue-rotate(0deg);
+    -moz-filter: hue-rotate(0deg);
+    -ms-filter: hue-rotate(0deg);
+    filter: hue-rotate(0deg);
+  }
+  to {
+    -webkit-filter: hue-rotate(30deg); /* 파란색, 녹색 계열 색상 변화 */
+    -moz-filter: hue-rotate(30deg);
+    -ms-filter: hue-rotate(30deg);
+    filter: hue-rotate(30deg);
+  }
+}
+

@@ -1,0 +1,64 @@
+body {
+  overflow: scroll;
+}
+
+.movie-container {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 30px;
+  gap: 50px;
+}
+
+.list-title {
+  width: 90%;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 50px;
+  color: whitesmoke;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-title > span {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 100px;
+  width: 90%;
+  padding: 20px;
+}
+
+/* 기본 설정: 3개의 아이템을 가로로 배치 */
+.movie-poster {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400px; /* 고정된 폭 */
+  height: 600px;
+  background-color: antiquewhite;
+}
+
+/* 화면이 992px 이하일 때: 2개의 아이템을 가로로 배치 */
+@media (max-width: 992px) {
+  .movie-list {
+    justify-content: space-around; /* 포스터 사이 간격 조정 */
+  }
+}
+
+/* 화면이 768px 이하일 때: 1개의 아이템을 가로로 배치 */
+@media (max-width: 768px) {
+  .movie-list {
+    flex-direction: column; /* 포스터가 한 줄로 쌓이도록 설정 */
+    align-items: center;
+  }
+}
