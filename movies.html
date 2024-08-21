@@ -10,6 +10,37 @@
   <body>
     <nav></nav>
     <div class="movie-container">
+      <div class="modal-overlay" id="modalOverlay">
+        <div id="detailContainer" class="detail-container">
+          <button id="closeModal" class="close-button">X</button>
+          <div class="detail-content">
+            <div class="movie-infomation">
+              <h2 id="detailMovieName"></h2>
+              <h4 id="detailMovieEngName"></h4>
+              <div class="detail-infomation">
+                <div id="openYear"></div>
+                <div id="runningTime"></div>
+                <div id="director"></div>
+                <div id="actors"></div> 
+              </div>
+            </div>
+            <hr style="width: 100%; color: #999999; line-height: 2px; margin-top: 20px; margin-bottom: 20px;">
+            <div class="detail-bottom">
+              <div class="my-Evaluation">
+                <p id="intro-text">🔎 지은의 평가</p>
+                <p id="detailRating"></p>
+                <div class="ddaom">❝&nbsp;<p id="detailComment"></p>&nbsp;❞</div>
+                <p id="detailDescription"></p>
+              </div>
+              <div class="movie-etc">
+                <div class="detail-title ofsummary">줄거리</div>
+                <div id="summary"></div>
+              </div>
+            </div>
+          </div>
+          <div class="ofgotosee" id="gotosee" onclick="">보러가기</div>
+        </div>
+      </div>  
       <div class="list-title">
         <span>MY MOVIE LIST</span>
       </div>
@@ -54,13 +85,6 @@
         </div>        
       </div>
       <div class="movie-list">
-        <div class="movie-poster"></div>
-        <div class="movie-poster"></div>
-        <div class="movie-poster"></div>
-        <div class="movie-poster"></div>
-        <div class="movie-poster"></div>
-        <div class="movie-poster"></div>
-        <div class="movie-poster"></div>
       </div>
     </div>
     <script src="./js/script.js"></script>

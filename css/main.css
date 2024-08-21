@@ -12,14 +12,6 @@
   font-style: normal;
 }
 
-@font-face {
-  font-family: 'establishRoomNo703OTF';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/establishRoomNo703OTF.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-
 
 body {
   font-family: "Noto Sans KR", sans-serif;
@@ -148,7 +140,7 @@ body {
 /* 영화 세부내용 설명 */
 .detail-container {
   position: relative;
-  background-color: #f1f1f1;
+  background-color: rgba(241, 241, 241, 0.9);
   color:#111111;
   padding: 20px;
   width: 70%;
@@ -250,7 +242,7 @@ body {
 }
 
 #detailRating {
-  font-family: 'establishRoomNo703OTF';
+  font-family: 'Danjo-bold-Regular';
   font-size: 32px;
   text-align: left;
   font-weight: bold;
@@ -265,7 +257,7 @@ body {
 }
 
 #detailComment {
-  font-family: 'establishRoomNo703OTF';
+  font-family: 'Danjo-bold-Regular';
   align-self: center;
   font-size: 28px;
   text-align: left;
@@ -305,7 +297,7 @@ body {
   height: auto;
   padding: 10px;
   color: #f1f1f1;
-  background-color: #aa0d0d;
+  background-color: #323232;
   font-family: 'Noto Sans KR';
   text-align: center;
   vertical-align: middle;
@@ -314,6 +306,11 @@ body {
   bottom: 50px;
   right: 50px;
   cursor: pointer;
+}
+
+.ofgotosee:hover {
+  background-color: #bb1010;
+  transition: 0.5s ease;
 }
 
 #summary {

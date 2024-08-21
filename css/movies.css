@@ -11,6 +11,7 @@ body {
 }
 
 .movie-container {
+  position: relative;
   margin-top: 100px;
   display: flex;
   flex-direction: column;
@@ -131,6 +132,7 @@ body {
   flex-direction: column;
   align-items: center;
   width: 400px; /* 영화 포스터 및 제목 컨테이너의 너비 */
+  cursor: pointer;
 }
 
 .movie-poster {
@@ -168,4 +170,205 @@ body {
     flex-direction: column; /* 포스터가 한 줄로 쌓이도록 설정 */
     align-items: center;
   }
+}
+
+
+/* 모달창 */
+
+/* 모달창 관련 설정 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-overlay.show {
+  display: flex; /* 모달이 열리면 flex로 설정 */
+}
+
+.detail-container {
+  position: relative;
+  background-color: rgba(241, 241, 241, 0.9);
+  color:#111111;
+  padding: 20px;
+  width: 70%;
+  height: 70vh;
+  box-shadow: -1px 0px #353535, 0px 1px #353535, 1px 0px #353535, 0px -1px #353535;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  min-width: 850px;
+}
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 36px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  color: #bb1010;
+}
+
+.modal-overlay.show .detail-container {
+  transform: translateY(50px);
+  opacity: 1;
+}
+
+.detail-content {
+  color:#111111;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.movie-infomation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+#detailMovieName {
+  font-size: 40px;
+  font-family: 'Danjo-bold-Regular';
+  font-weight: bold;
+}
+
+#detailMovieEngName{
+  font-size: 20px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.detail-infomation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: center;
+  gap: 25px;
+}
+
+.detail-bottom {
+  width: 100%;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  gap: 50px;
+}
+
+.my-Evaluation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap:20px;
+  margin: 0 auto;
+  text-align: left;
+  vertical-align: middle;
+  width: 50%;
+}
+
+#intro-text {
+  padding: 0px 10px;
+  font-family: 'Danjo-bold-Regular';
+  color: #111111;
+  font-size: 32px;
+  align-self: flex-start;
+  text-align: center;
+}
+
+#detailRating {
+  font-family: 'Danjo-bold-Regular';
+  font-size: 32px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.ddaom {
+  display: flex;
+  align-items: flex-start;
+  font-family: 'Danjo-bold-Regular';
+  font-size: 40px;
+  font-weight: bold;
+}
+
+#detailComment {
+  font-family: 'Danjo-bold-Regular';
+  align-self: center;
+  font-size: 28px;
+  text-align: left;
+  font-weight: 100;
+}
+
+#detailDescription {
+  font-family: 'Noto Sans KR';
+  text-align: left;
+  word-wrap: break-word;
+}
+
+.movie-etc {
+  position: relative;
+  font-family: 'Noto Sans KR';
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detail-title {
+  width: 100px;
+  color: #f1f1f1;
+  background-color: #111111;;
+  font-family: 'Noto Sans KR';
+  font-size: 20px;
+  text-align: center;
+}
+
+.ofsummary {
+  align-self: flex-start;
+}
+
+.ofgotosee {
+  width: 100px;
+  height: auto;
+  padding: 10px;
+  color: #f1f1f1;
+  background-color: #323232;
+  font-family: 'Noto Sans KR';
+  text-align: center;
+  vertical-align: middle;
+  font-size: 20px;
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+  cursor: pointer;
+}
+
+.ofgotosee:hover {
+  background-color: #bb1010;
+  transition: 0.5s ease;
+}
+
+#summary {
+  font-family: 'Noto Sans KR';
+  text-align: left;
+  word-wrap: break-word;
 }
