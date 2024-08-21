@@ -1,13 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SSAFLIX - Contact</title>
   <link rel="stylesheet" href="./css/style.css" />
+  <style>
+    .contact-container {
+      margin: 0 auto;
+      margin-top: 100px;
+      width: 100%;
+      height: 80vh;
+      min-width: 850px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .ticket-cont {
+      position: relative;
+      margin: 0 auto;
+      width: 80%;
+      min-width: 850px;
+      display: grid;
+      place-items: center;
+      perspective: 1000px;
+      /* 3D 효과를 위한 원근법 */
+    }
+
+    .ticket,
+    .seals {
+      grid-area: 1 / 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform-style: preserve-3d;
+      /* 3D 공간 유지 */
+      transition: transform 0.2s ease-out;
+      transform-origin: center;
+      /* 회전 중심을 요소의 가운데로 설정 */
+    }
+
+    .ticket img,
+    .seals img {
+      width: 70%;
+      min-width: 850px;
+    }
+
+    .seals {
+      z-index: 2;
+      transform: translateY(-125%);
+      transition: transform 0.2s ease-out, filter 0.2s ease-out;
+      filter: brightness(1.05) contrast(1.05);
+      /* 기본 밝기와 대비를 미세하게 조정 */
+    }
+
+
+    .gobtn {
+      position: absolute;
+      width: 28%;
+      min-width: 300px;
+      height: 8%;
+      cursor: pointer;
+      border-radius: 50px;
+    }
+
+    .gobtn:hover {
+      background-color: rgba(187, 16, 16, 0.5);
+      transition: 0.5s ease;
+    }
+
+    .github {
+      top: 40%;
+      left: 37%;
+    }
+
+    .email {
+      top: 54%;
+      left: 37%;
+    }
+
+    .ticket-cont:hover .ticket img {
+      transition: transform 0.2s ease-out;
+    }
+
+    .ticket-cont:hover .seals img {
+      transition: filter 0.2s ease-out;
+    }
+  </style>
 </head>
+
 <body>
   <nav></nav>
+  <div class="contact-container">
+    <div class="ticket-cont">
+      <div class="ticket">
+        <img src="./image/contact_ticket.png" alt="">
+      </div>
+      <div class="seals">
+        <img src="./image/contact_ticket_light.png" alt="">
+        <div class="reflection"></div>
+      </div>
+      <div class="gobtn github" onclick="window.open('https://github.com/doh3e', '_blank')"></div>
+      <div class="gobtn email" onclick="window.location.href='mailto:wldms3333@gmail.com'"></div>
+    </div>
+  </div>
   <script src="./js/script.js"></script>
+  <script src="./js/ticket.js"></script>
 </body>
+
 </html>
