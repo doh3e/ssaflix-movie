@@ -1,28 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./css/movies.css">
-</head>
-<body>
-  <nav></nav>
-  <div class="movie-container">
-    <div class="list-title">
-      <span>MY MOVIE LIST</span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SSAFLIX - My Movie List</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/movies.css" />
+  </head>
+  <body>
+    <nav></nav>
+    <div class="movie-container">
+      <div class="list-title">
+        <span>MY MOVIE LIST</span>
+      </div>
+      <div class="movie-category">
+        <div class="categories nation">
+          <div class="custom-select">
+            <div class="selected">
+              <span>국가</span>
+              <span class="icoArrow">
+                <img src="./image/down_icon.png" alt="화살표" />
+              </span>
+            </div>
+            <ul class="options">
+              <li data-value="ALL">전체</li>
+              <li data-value="KOR">한국</li>
+              <li data-value="JPN">일본</li>
+              <li data-value="CN">중국</li>
+              <li data-value="ENG">영어권</li>
+              <li data-value="IND">인도</li>
+              <li data-value="EU">유럽</li>
+            </ul>
+          </div>
+        </div>
+        <div class="categories genre">
+          <div class="custom-select">
+            <div class="selected">
+              <span>장르</span>
+              <span class="icoArrow">
+                <img src="./image/down_icon.png" alt="화살표">
+              </span>
+            </div>
+            <ul class="options">
+              <li data-value="ALL">전체</li>
+              <li data-value="COMM">코미디</li>
+              <li data-value="ACT">액션</li>
+              <li data-value="DRA">드라마</li>
+              <li data-value="ROM">로맨스</li>
+              <li data-value="SCI-FI">SF</li>
+              <li data-value="HIS">역사</li>
+            </ul>
+          </div>
+        </div>        
+      </div>
+      <div class="movie-list">
+        <div class="movie-poster"></div>
+        <div class="movie-poster"></div>
+        <div class="movie-poster"></div>
+        <div class="movie-poster"></div>
+        <div class="movie-poster"></div>
+        <div class="movie-poster"></div>
+        <div class="movie-poster"></div>
+      </div>
     </div>
-    <div class="movie-list">
-      <div class="movie-poster"></div>
-      <div class="movie-poster"></div>
-      <div class="movie-poster"></div>
-      <div class="movie-poster"></div>
-      <div class="movie-poster"></div>
-      <div class="movie-poster"></div>
-      <div class="movie-poster"></div>
-    </div>
-  </div>
-  <script src="./js/script.js"></script>
-</body>
+    <script src="./js/script.js"></script>
+    <script src="./js/movies_select.js"></script>
+    <script src="./js/movies_list.js"></script>
+  </body>
 </html>

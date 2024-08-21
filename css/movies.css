@@ -1,5 +1,13 @@
+@font-face {
+  font-family: 'Danjo-bold-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/Danjo-bold-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 body {
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .movie-container {
@@ -11,10 +19,12 @@ body {
   width: 100%;
   padding: 30px;
   gap: 50px;
+  min-width: 850px;
 }
 
 .list-title {
   width: 90%;
+  height: 15%;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size: 50px;
   color: whitesmoke;
@@ -28,24 +38,121 @@ body {
   vertical-align: middle;
 }
 
+.movie-category {
+  width: 100%;
+  min-width: 850px;
+  height: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.custom-select {
+  position: relative;
+  width: 200px; /* 원하는 너비로 설정 */
+  height: 50px;
+  box-sizing: border-box; /* 패딩과 보더를 포함하여 너비와 높이를 계산 */
+}
+
+.selected {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box; /* 패딩과 보더를 포함하여 너비와 높이를 계산 */
+  width: 100%; /* 부모 요소의 너비에 맞게 조정 */
+  overflow: hidden; /* 텍스트나 내용이 넘칠 경우 숨김 */
+}
+
+.selected img {
+  text-align: center;
+  vertical-align: middle;
+  max-width: 20px; /* 이미지 크기를 제한 */
+  max-height: 20px; /* 이미지 크기를 제한 */
+}
+
+.options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.options.show {
+  max-height: 200px; /* 보여줄 옵션의 최대 높이 설정 */
+  opacity: 1;
+  overflow-y: auto; /* 옵션이 많을 경우 스크롤 */
+}
+
+.options li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.options li:hover {
+  background-color: #f1f1f1;
+}
+
+.icoArrow img {
+  transition: transform 0.3s ease;
+  max-width: 25px; /* 이미지 크기를 제한 */
+  max-height: 25px; /* 이미지 크기를 제한 */
+}
+
+.rotated {
+  transform: rotate(180deg);
+}
+
 .movie-list {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 100px;
-  width: 90%;
+  justify-content: center;
+  gap: 70px;
+  width: 80%;
   padding: 20px;
 }
 
-/* 기본 설정: 3개의 아이템을 가로로 배치 */
-.movie-poster {
+.movie-item {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  width: 400px; /* 고정된 폭 */
+  width: 400px; /* 영화 포스터 및 제목 컨테이너의 너비 */
+}
+
+.movie-poster {
+  width: 100%;
   height: 600px;
   background-color: antiquewhite;
+}
+
+.movie-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.movie-title {
+  font-family: 'Danjo-bold-Regular';
+  font-weight: bold;
+  margin-top: 20px;
+  font-size: 36px;
+  text-align: center;
+  color: #f1f1f1;
+  text-shadow: -1px 0px #111111, 0px 1px #111111, 1px 0px #111111, 0px -1px #111111;
 }
 
 /* 화면이 992px 이하일 때: 2개의 아이템을 가로로 배치 */

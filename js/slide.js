@@ -1,13 +1,16 @@
 let currentIndex = 0;
 let slideInterval;
+let isAnimatingBanner = false; // 배너 슬라이드 애니메이션 상태 플래그
+let isAnimatingPoster = false; // 포스터 슬라이드 애니메이션 상태 플래그
+
 const bannerImages = [
-  './image/3idiots_banner.png',  // 세얼간이 영화장면
-  './image/pasuggun_banner.jpg', // 파수꾼
-  './image/everything_banner.jpg',   // 3번째
-  './image/mogadishu_banner.png',   // 4번째
-  './image/rrr_banner.jpg',   // 5번째
-  './image/urideul_banner.jpg',   // 6번째 추가
-  './image/goodandbye_banner.jpg'    // 7번째 추가
+  './image/3idiots_banner.png',  
+  './image/pasuggun_banner.jpg', 
+  './image/everything_banner.jpg',  
+  './image/mogadishu_banner.png',  
+  './image/rrr_banner.jpg',  
+  './image/urideul_banner.jpg',  
+  './image/goodandbye_banner.jpg'  
 ];
 
 const movieName = [
@@ -32,82 +35,82 @@ const movieEngName = [
 
 const movieNameElement = document.getElementById('movieName');
 const movieEngNameElement = document.getElementById('movieEngName');
-const movieInfoElement = document.querySelector('.movie-info'); // 추가
+const movieInfoElement = document.querySelector('.movie-info');
 
 const bannerImageContainer = document.querySelector('.main-photo');
-let bannerImage = document.querySelector('.main-slide-banner'); // 현재 배너 이미지
-const container = document.querySelector('.slide-container');   // 포스터 슬라이드 컨테이너
-const prev = document.querySelector('.btnleft');                // 이전 버튼
-const next = document.querySelector('.btnright');               // 다음 버튼
+let bannerImage = document.querySelector('.main-slide-banner');
+const container = document.querySelector('.slide-container');
+const prev = document.querySelector('.btnleft');
+const next = document.querySelector('.btnright');
+let isAnimating = false; // 애니메이션 상태 플래그 변수
 
-let isAnimating = false; // 애니메이션 상태 플래그
-
-function startSlideInterval() {
-  // 이전 인터벌이 있으면 제거
-  if (slideInterval) {
-    clearInterval(slideInterval);
-  }
-  
-  slideInterval = setInterval(() => {
-    changeSlide('next');
-  }, 5000); // 7초마다 자동 슬라이드
+// 슬라이드 자동 재생을 중지하는 함수
+function stopSlideInterval() {
+  clearInterval(slideInterval);
 }
 
-function stopSlideInterval() {
-  clearInterval(slideInterval); // 자동 슬라이드 멈춤
+// 슬라이드 자동 재생을 시작하는 함수
+function startSlideInterval() {
+  clearInterval(slideInterval); // 기존 인터벌을 먼저 정리
+  slideInterval = setInterval(() => {
+    changeSlide('next');
+  }, 5000);
 }
 
 function updateBannerImage(index, direction) {
-  if (isAnimating) return; // 이미 애니메이션 중이면 종료
-  isAnimating = true; // 애니메이션 상태 시작
+  if (isAnimatingBanner) return;
+  isAnimatingBanner = true;
   
   const newImage = document.createElement('img');
   newImage.src = bannerImages[index];
   newImage.classList.add('main-slide-banner');
-  newImage.style.left = direction === 'next' ? '100%' : '-100%'; // 이미지 초기 위치 설정
+  newImage.style.left = direction === 'next' ? '100%' : '-100%';
 
-  // 영화 제목 페이드아웃
   movieInfoElement.classList.remove('show');
 
   bannerImageContainer.appendChild(newImage);
 
   setTimeout(() => {
-    newImage.style.left = '0'; // 새로운 이미지가 화면에 나타남
-    bannerImage.style.left = direction === 'next' ? '-100%' : '100%'; // 기존 이미지는 반대 방향으로 이동
+    newImage.style.left = '0';
+    bannerImage.style.left = direction === 'next' ? '-100%' : '100%';
 
     newImage.addEventListener('transitionend', () => {
       bannerImageContainer.removeChild(bannerImage);
-      bannerImage = newImage; // 새로운 이미지를 현재 이미지로 업데이트
+      bannerImage = newImage;
 
-      // 영화 이름과 영어 제목 업데이트
       movieNameElement.textContent = movieName[currentIndex];
       movieEngNameElement.textContent = movieEngName[currentIndex];
 
-      // 페이드인 애니메이션을 위해 클래스 추가
       setTimeout(() => {
         movieInfoElement.classList.add('show');
-      }, 100); // 약간의 지연 후 페이드인 시작
+      }, 100);
 
-      isAnimating = false; // 애니메이션 상태 종료
+      isAnimatingBanner = false;
     }, { once: true });
   }, 20);
 }
 
 // 포스터 슬라이드 제어 함수
 function moveSlide(direction) {
-  if (isAnimating) return;
+  if (isAnimatingPoster) return;
+  
+  isAnimatingPoster = true; 
 
   const slides = document.querySelectorAll('.slide');
   if (direction === 'next') {
-    container.append(slides[0]); // 첫 번째 슬라이드를 마지막으로 이동
+    container.append(slides[0]); 
   } else if (direction === 'prev') {
-    container.prepend(slides[slides.length - 1]); // 마지막 슬라이드를 첫 번째로 이동
+    container.prepend(slides[slides.length - 1]);
   }
+
+  setTimeout(() => {
+    isAnimatingPoster = false; 
+  }, 1000); 
 }
 
 // 슬라이드를 동시에 변경하는 함수
 function changeSlide(direction) {
-  if (isAnimating) return; // 애니메이션이 진행 중이면 함수를 종료
+  if (isAnimatingBanner || isAnimatingPoster) return;
 
   if (direction === 'next') {
     currentIndex = (currentIndex + 1) % bannerImages.length;
@@ -125,7 +128,6 @@ function handleSwipe() {
   let currentX = 0;
   let isDragging = false;
 
-  // 터치 이벤트
   container.addEventListener('touchstart', function(event) {
       startX = event.touches[0].clientX;
   });
@@ -138,7 +140,6 @@ function handleSwipe() {
       handleGesture();
   });
 
-  // 마우스 이벤트
   container.addEventListener('mousedown', function(event) {
       isDragging = true;
       startX = event.clientX;
@@ -165,7 +166,7 @@ function handleSwipe() {
   });
 
   function handleGesture() {
-      const swipeThreshold = 50; // 스와이프를 감지할 임계값
+      const swipeThreshold = 50; 
       if (Math.abs(currentX - startX) > swipeThreshold) {
           if (currentX < startX) {
               changeSlide('next');
@@ -176,24 +177,33 @@ function handleSwipe() {
   }
 }
 
-// 함수 호출
-handleSwipe();
+// 방향키로 슬라이드 제어
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'ArrowLeft') {
+    stopSlideInterval(); 
+    changeSlide('prev');
+    startSlideInterval();
+  } else if (event.key === 'ArrowRight') {
+    stopSlideInterval(); 
+    changeSlide('next');
+    startSlideInterval();
+  }
+});
 
 // 다음 버튼 클릭 시
 next.addEventListener('click', () => {
-  stopSlideInterval(); // 자동 슬라이드 멈춤
+  stopSlideInterval(); 
   changeSlide('next');
-  startSlideInterval(); // 자동 슬라이드 재시작
+  startSlideInterval();
 });
 
 // 이전 버튼 클릭 시
 prev.addEventListener('click', () => {
-  stopSlideInterval(); // 자동 슬라이드 멈춤
+  stopSlideInterval(); 
   changeSlide('prev');
-  startSlideInterval(); // 자동 슬라이드 재시작
+  startSlideInterval();
 });
 
-// 슬라이드 컨테이너 클릭 시
 container.addEventListener('click', (event) => {
   if (window.innerWidth <= 900) {
     const containerRect = container.getBoundingClientRect();
@@ -205,7 +215,6 @@ container.addEventListener('click', (event) => {
   }
 });
 
-// 배너 및 포스터, 버튼에 hover 시 자동 슬라이드 멈춤
 const elementsToHover = [bannerImageContainer, container, prev, next];
 elementsToHover.forEach(element => {
   element.addEventListener('mouseenter', stopSlideInterval);
@@ -215,3 +224,6 @@ elementsToHover.forEach(element => {
 // 페이지 로드 시 처음 배너 이미지를 설정하고 자동 슬라이드 시작
 updateBannerImage(currentIndex, 'next');
 startSlideInterval();
+
+// 스와이프 기능 호출
+handleSwipe();
