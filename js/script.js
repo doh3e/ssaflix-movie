@@ -1,4 +1,4 @@
 const nav = document.querySelector('nav');
-fetch('../navbar.html')
+fetch('https://doh3e.github.io/web_project/navbar.html')
 .then(res => res.text())
 .then(data => nav.innerHTML = data);
