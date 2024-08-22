@@ -157,6 +157,14 @@ body {
   text-shadow: -1px 0px #111111, 0px 1px #111111, 1px 0px #111111, 0px -1px #111111;
 }
 
+.no-movies {
+  text-shadow: -1px 0px #111111, 0px 1px #111111, 1px 0px #111111, 0px -1px #111111;
+  color: #f1f1f1;
+  font-family: 'Danjo-bold-Regular';
+  font-size: 36px;
+  text-align: center;
+}
+
 /* 화면이 992px 이하일 때: 2개의 아이템을 가로로 배치 */
 @media (max-width: 992px) {
   .movie-list {
