@@ -149,6 +149,9 @@ body {
   transform: translateY(-100%);
   transition: transform 0.5s ease, opacity 0.5s ease;
   min-width: 850px;
+  min-height: 600px;
+  max-width: 1500px;
+  max-height: 700px;
 }
 
 .close-button {
@@ -182,6 +185,10 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  min-width: 850px;
+  min-height: 600px;
+  max-width: 1500px;
+  max-height: 700px;
 }
 
 .movie-infomation {
@@ -321,6 +328,7 @@ body {
 
 .main-posters {
   width: 80%;
+  height: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -357,7 +365,7 @@ body {
 
 .poster-container {
   width: 400px;
-  height: 450px;
+  height: 80%;
   background-color: white;
   display: flex;
   justify-content: center;
