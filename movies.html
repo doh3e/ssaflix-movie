@@ -21,15 +21,27 @@
                 <div id="openYear"></div>
                 <div id="runningTime"></div>
                 <div id="director"></div>
-                <div id="actors"></div> 
+                <div id="actors"></div>
               </div>
             </div>
-            <hr style="width: 100%; color: #999999; line-height: 2px; margin-top: 20px; margin-bottom: 20px;">
+            <hr
+              style="
+                width: 100%;
+                color: #999999;
+                line-height: 2px;
+                margin-top: 20px;
+                margin-bottom: 20px;
+              "
+            />
             <div class="detail-bottom">
               <div class="my-Evaluation">
                 <p id="intro-text">🔎 지은의 평가</p>
                 <p id="detailRating"></p>
-                <div class="ddaom">❝&nbsp;<p id="detailComment"></p>&nbsp;❞</div>
+                <div class="ddaom">
+                  ❝&nbsp;
+                  <p id="detailComment"></p>
+                  &nbsp;❞
+                </div>
                 <p id="detailDescription"></p>
               </div>
               <div class="movie-etc">
@@ -40,7 +52,7 @@
           </div>
           <div class="ofgotosee" id="gotosee" onclick="">보러가기</div>
         </div>
-      </div>  
+      </div>
       <div class="list-title">
         <span>MY MOVIE LIST</span>
       </div>
@@ -69,7 +81,7 @@
             <div class="selected">
               <span>장르</span>
               <span class="icoArrow">
-                <img src="./image/down_icon.png" alt="화살표">
+                <img src="./image/down_icon.png" alt="화살표" />
               </span>
             </div>
             <ul class="options">
@@ -82,12 +94,16 @@
               <li data-value="HIS">역사</li>
             </ul>
           </div>
-        </div>        
+        </div>
       </div>
-      <div class="movie-list">
-      </div>
+      <div class="movie-list"></div>
     </div>
-    <script src="./js/script.js"></script>
+    <script>
+      const nav = document.querySelector('nav');
+      fetch("/ssaflix-movie/navbar.html")
+        .then((res) => res.text())
+        .then((data) => (nav.innerHTML = data));
+    </script>
     <script src="./js/movies_select.js"></script>
     <script src="./js/movies_list.js"></script>
   </body>

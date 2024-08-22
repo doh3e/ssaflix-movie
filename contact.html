@@ -106,7 +106,12 @@
       <div class="gobtn email" onclick="window.location.href='mailto:wldms3333@gmail.com'"></div>
     </div>
   </div>
-  <script src="./js/script.js"></script>
+  <script>
+    const nav = document.querySelector('nav');
+    fetch("/ssaflix-movie/navbar.html")
+      .then((res) => res.text())
+      .then((data) => (nav.innerHTML = data));
+  </script>
   <script src="./js/ticket.js"></script>
 </body>
 
